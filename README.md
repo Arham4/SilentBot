@@ -7,12 +7,15 @@ SilentBot is a bot that starts a timer when the last person who messaged in a se
 ### [Click here to add the bot to your Discord!](https://tinyurl.com/AddSilentBot)
 
 ## Setup
-A config.yaml file must be made in the source root. The format for the YAML file is as follows:
+You must have Maven and Kotlin installed and configured. A config.yaml file must be made in the source root. The format for the YAML file is as follows:
 ```
 discord:
   token: "TOKEN AS PER DISCORDAPP.COM"
 ```
-After that, simply run SilentBot.kt!
+After doing so, make a `data` folder at the root. After all of that, run SilentBot.kt!
 
 ## Commands
-As of right now, the bot only supports the `!!!help` command. The bot's only planned command is `!!!record` which will display the current record for the longest server silence time.
+```
+!!!help | Displays the list of commands.
+!!!record | Shows the current record for silence in the current Discord channel.
+```
