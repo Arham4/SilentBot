@@ -24,6 +24,16 @@ object Guilds {
     fun retrieveGuild(guildId: Long): Guild? {
         return YAMLParse.parseDto("data/$guildId.yaml", Guild::class)
     }
+
+    inline fun useGuild(guildId: Long, action: (guild: Guild) -> Unit) {
+        var guild = Guilds.retrieveGuild(guildId)
+        if (Guilds.retrieveGuild(guildId) == null) {
+            guild = Guilds.createGuild(guildId)
+        }
+        guild?.let {
+            action(guild)
+        }
+    }
 }
 
 data class Guild internal constructor(val guildId: Long,

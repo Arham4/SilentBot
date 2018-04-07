@@ -4,6 +4,7 @@ import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.JDA
 import net.dv8tion.jda.core.entities.TextChannel
 import java.awt.Color
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -49,7 +50,7 @@ object DiscordFunctions {
     }
 
     val JDA.defaultTextChannel: TextChannel?
-        get() = SilentBot.BOT.textChannels.firstOrNull { it.canTalk() && !it.isNSFW }
+        get() = textChannels.firstOrNull { it.canTalk() && !it.isNSFW }
 }
 
 fun String.asProperSubjectType(number: Int, plural: String = "${this}s") = if (number == 1) this else plural
@@ -58,4 +59,8 @@ val String.mentionToId: String
 
 fun String.isUser(): Boolean {
     return this.startsWith("<@") && this.endsWith(">")
+}
+
+fun Long.toMinutes(): Long {
+    return TimeUnit.MILLISECONDS.toMinutes(this)
 }

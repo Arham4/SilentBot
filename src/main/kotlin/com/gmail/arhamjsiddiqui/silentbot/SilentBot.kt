@@ -1,6 +1,7 @@
 package com.gmail.arhamjsiddiqui.silentbot
 
 import com.gmail.arhamjsiddiqui.silentbot.commands.HelpCommand
+import com.gmail.arhamjsiddiqui.silentbot.commands.RecordCommand
 import com.gmail.arhamjsiddiqui.silentbot.data.CONFIG
 import com.gmail.arhamjsiddiqui.silentbot.listeners.MessageReceivedListener
 import de.btobastian.sdcf4j.handler.JDA3Handler
@@ -36,9 +37,10 @@ object SilentBot {
         }
         registerCommands {
             cmd.registerCommand(HelpCommand(cmd))
+            cmd.registerCommand(RecordCommand())
         }
 
-        jda.presence.game = Game.playing("the silent game")
+        jda.presence.game = Game.playing("the silent game || !!!help")
 
         jda
     }
