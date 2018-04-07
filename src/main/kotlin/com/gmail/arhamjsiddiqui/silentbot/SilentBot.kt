@@ -1,7 +1,8 @@
 package com.gmail.arhamjsiddiqui.silentbot
 
-import com.gmail.arhamjsiddiqui.runebot.data.CONFIG
 import com.gmail.arhamjsiddiqui.silentbot.commands.HelpCommand
+import com.gmail.arhamjsiddiqui.silentbot.data.CONFIG
+import com.gmail.arhamjsiddiqui.silentbot.listeners.MessageReceivedListener
 import de.btobastian.sdcf4j.handler.JDA3Handler
 import net.dv8tion.jda.core.AccountType
 import net.dv8tion.jda.core.JDA
@@ -27,10 +28,12 @@ object SilentBot {
             registrants.invoke()
         }
 
-        val jda = JDABuilder(AccountType.BOT).setToken(CONFIG.discord.token).buildAsync()
+        val jda = JDABuilder(AccountType.BOT).setToken(CONFIG!!.discord.token).buildAsync()
         val cmd = JDA3Handler(jda)
 
-        registerListeners { }
+        registerListeners {
+            jda.addEventListener(MessageReceivedListener())
+        }
         registerCommands {
             cmd.registerCommand(HelpCommand(cmd))
         }
