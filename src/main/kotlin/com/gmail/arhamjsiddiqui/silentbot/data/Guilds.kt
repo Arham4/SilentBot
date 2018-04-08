@@ -36,7 +36,7 @@ object Guilds {
     }
 }
 
-data class Guild internal constructor(internal var guildName: String, // legit out of curiosity, never used.
+data class Guild internal constructor(var guildName: String, // legit out of curiosity, never used.
                                       val guildId: Long,
                                       var record: Long, // the biggest difference in the lastMessage and latest message in milliseconds
                                       @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z") var lastMessage: Date)
