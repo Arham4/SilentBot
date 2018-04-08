@@ -38,7 +38,6 @@ class MessageReceivedListener : EventListener {
     }
 
     private infix fun Long.beats(other: Long): Boolean {
-        println("${System.currentTimeMillis() - this} > $other")
         return System.currentTimeMillis() - this > other
     }
 }
