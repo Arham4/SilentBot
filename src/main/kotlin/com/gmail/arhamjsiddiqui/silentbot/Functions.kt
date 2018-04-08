@@ -61,6 +61,21 @@ fun String.isUser(): Boolean {
     return this.startsWith("<@") && this.endsWith(">")
 }
 
-fun Long.toMinutes(): Long {
-    return TimeUnit.MILLISECONDS.toMinutes(this)
+fun Long.toTimeString(): String {
+    val minutes = TimeUnit.MILLISECONDS.toMinutes(this)
+    val hours = minutes / 60
+    val days = hours / 24
+    val output = StringBuilder()
+    output.append("${minutes - (hours * 60)} minutes")
+    if (hours > 0) {
+        var insertion = "${hours - (days * 24)} hours"
+        if (minutes != 60L) insertion += ", "
+        output.insert(0, insertion)
+    }
+    if (days > 0) {
+        var insertion = "$days days"
+        if (hours > 0 || minutes > 0) insertion += ", "
+        output.insert(0, insertion)
+    }
+    return output.toString()
 }

@@ -2,7 +2,7 @@ package com.gmail.arhamjsiddiqui.silentbot.commands
 
 import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.MarkdownText.bold
 import com.gmail.arhamjsiddiqui.silentbot.data.Guilds
-import com.gmail.arhamjsiddiqui.silentbot.toMinutes
+import com.gmail.arhamjsiddiqui.silentbot.toTimeString
 import de.btobastian.sdcf4j.Command
 import de.btobastian.sdcf4j.CommandExecutor
 import net.dv8tion.jda.core.entities.TextChannel
@@ -18,8 +18,7 @@ class RecordCommand : CommandExecutor {
     fun onRecordCommand(textChannel: TextChannel): String {
         Guilds.useGuild(textChannel.guild.name, textChannel.guild.idLong) { guild ->
             if (guild.record > 600000) { // so it doesn't print out the default record cap. Just for professionals sake tbh.
-                return "The current record for silence is ${"${guild.record.toMinutes()} minutes".bold()}."
-                // TODO make it say minutes, hours, days, etc.
+                return "The current record for silence is ${guild.record.toTimeString().bold()}."
             }
         }
         return "Unable to retrieve current silence record."

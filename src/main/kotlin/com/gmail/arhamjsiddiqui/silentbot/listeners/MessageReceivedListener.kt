@@ -6,7 +6,7 @@ import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.queueMessage
 import com.gmail.arhamjsiddiqui.silentbot.SilentBot
 import com.gmail.arhamjsiddiqui.silentbot.data.Guild
 import com.gmail.arhamjsiddiqui.silentbot.data.Guilds
-import com.gmail.arhamjsiddiqui.silentbot.toMinutes
+import com.gmail.arhamjsiddiqui.silentbot.toTimeString
 import net.dv8tion.jda.core.events.Event
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.EventListener
@@ -35,7 +35,7 @@ class MessageReceivedListener : EventListener {
 
     private fun sendNewRecordMessage(guild: Guild) {
         // TODO make it say minutes, hours, days, etc.
-        SilentBot.BOT.defaultTextChannel?.queueMessage("A new server-wide record for silence has been made! The new record is now ${"${guild.record.toMinutes()} minutes".bold()}!")
+        SilentBot.BOT.defaultTextChannel?.queueMessage("A new server-wide record for silence has been made! The new record is now ${guild.record.toTimeString().bold()}!")
     }
 
     private infix fun Long.beats(other: Long): Boolean {
