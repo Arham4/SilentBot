@@ -10,8 +10,8 @@ import java.util.*
  */
 object Guilds {
 
-    fun createGuild(guildId: Long): Guild {
-        val guild = Guild(guildId, 600000, Date(System.currentTimeMillis()))
+    fun createGuild(guildName: String, guildId: Long): Guild {
+        val guild = Guild(guildName, guildId, 600000, Date(System.currentTimeMillis()))
         // 600000 to make the record a default of 10 minutes. Otherwise, it will be annoying going on and on at the beginning.
         YAMLWrite.writeDto("data/$guildId.yaml", guild)
         return guild
@@ -25,10 +25,10 @@ object Guilds {
         return YAMLParse.parseDto("data/$guildId.yaml", Guild::class)
     }
 
-    inline fun useGuild(guildId: Long, action: (guild: Guild) -> Unit) {
+    inline fun useGuild(guildName: String, guildId: Long, action: (guild: Guild) -> Unit) {
         var guild = Guilds.retrieveGuild(guildId)
         if (Guilds.retrieveGuild(guildId) == null) {
-            guild = Guilds.createGuild(guildId)
+            guild = Guilds.createGuild(guildName, guildId)
         }
         guild?.let {
             action(guild)
@@ -36,6 +36,7 @@ object Guilds {
     }
 }
 
-data class Guild internal constructor(val guildId: Long,
+data class Guild internal constructor(internal var guildName: String, // legit out of curiosity, never used.
+                                      val guildId: Long,
                                       var record: Long, // the biggest difference in the lastMessage and latest message in milliseconds
                                       @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z") var lastMessage: Date)

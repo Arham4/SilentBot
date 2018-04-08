@@ -16,7 +16,7 @@ class RecordCommand : CommandExecutor {
 
     @Command(aliases = ["!!!record"], async = true, description = "Shows the current record for silence in the current Discord channel.")
     fun onRecordCommand(textChannel: TextChannel): String {
-        Guilds.useGuild(textChannel.guild.idLong) { guild ->
+        Guilds.useGuild(textChannel.guild.name, textChannel.guild.idLong) { guild ->
             if (guild.record > 60000) { // so it doesn't print out the default record cap. Just for professionals sake tbh.
                 return "The current record for silence is ${"${guild.record.toMinutes()} minutes".bold()}."
                 // TODO make it say minutes, hours, days, etc.

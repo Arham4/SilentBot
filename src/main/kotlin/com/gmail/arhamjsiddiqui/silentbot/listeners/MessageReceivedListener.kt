@@ -20,12 +20,13 @@ import java.util.*
 class MessageReceivedListener : EventListener {
     override fun onEvent(event: Event) {
         if (event is MessageReceivedEvent) {
-            Guilds.useGuild(event.guild.idLong) { guild ->
+            Guilds.useGuild(event.guild.name, event.guild.idLong) { guild ->
                 if (guild.lastMessage.time beats guild.record) {
                     guild.record = System.currentTimeMillis() - guild.lastMessage.time
                     sendNewRecordMessage(guild)
                 }
 
+                guild.guildName = event.guild.name
                 guild.lastMessage = Date(System.currentTimeMillis())
                 Guilds.updateGuild(event.guild.idLong, guild)
             }
