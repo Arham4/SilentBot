@@ -12,7 +12,10 @@ You must have Maven and Kotlin installed and configured. A config.yaml file must
 discord:
   token: "TOKEN AS PER DISCORDAPP.COM"
 ```
-After doing so, make a `data` folder at the root. After all of that, run SilentBot.kt!
+After doing so, make a `data` folder at the root. After all of that, use the following command to run the bot (if you choose to use command line/terminal):
+```
+mvn exec:java -Dexec.mainClass="com.gmail.arhamjsiddiqui.silentbot.SilentBot"
+```
 
 ## Commands
 ```
