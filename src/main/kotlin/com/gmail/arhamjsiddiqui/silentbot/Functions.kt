@@ -50,7 +50,7 @@ object DiscordFunctions {
     }
 
     val JDA.defaultTextChannel: TextChannel?
-        get() = textChannels.firstOrNull { it.canTalk() && !it.isNSFW }
+        get() = textChannels.firstOrNull { it.canTalk() }
 }
 
 fun String.asProperSubjectType(number: Int, plural: String = "${this}s") = if (number == 1) this else plural
