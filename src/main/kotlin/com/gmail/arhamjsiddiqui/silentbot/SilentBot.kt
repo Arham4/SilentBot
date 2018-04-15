@@ -29,7 +29,7 @@ object SilentBot {
             registrants.invoke()
         }
 
-        val jda = JDABuilder(AccountType.BOT).setToken(CONFIG!!.discord.token).buildAsync()
+        val jda = JDABuilder(AccountType.BOT).setToken(CONFIG.discord.token).buildAsync()
         val cmd = JDA3Handler(jda)
 
         registerListeners {

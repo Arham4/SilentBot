@@ -1,5 +1,6 @@
 package com.gmail.arhamjsiddiqui.silentbot.commands
 
+import com.gmail.arhamjsiddiqui.silentbot.data.CONFIG
 import de.btobastian.sdcf4j.Command
 import de.btobastian.sdcf4j.CommandExecutor
 import de.btobastian.sdcf4j.CommandHandler
@@ -29,6 +30,7 @@ class HelpCommand(private val commandHandler: CommandHandler) : CommandExecutor 
             }
         }
         builder.append("\n```")
+        builder.append("Visit the Github repo to view progress as it comes: " + CONFIG.gitRepoUrl)
         return builder.toString()
     }
 

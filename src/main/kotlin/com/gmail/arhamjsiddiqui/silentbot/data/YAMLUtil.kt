@@ -27,12 +27,8 @@ object YAMLParse {
      * Takes in a data class (with ::class) and parses it by the fileName provided, returning the appropriate class
      * originally provided with parsed data.
      */
-    fun <T : Any> parseDto(fileName: String, dto: KClass<T>): T? {
-        return try {
-            Files.newBufferedReader(FileSystems.getDefault().getPath(fileName)).use { mapper.readValue(it, dto.java) }
-        } catch (e: Exception) {
-            null
-        }
+    fun <T : Any> parseDto(fileName: String, dto: KClass<T>): T {
+        return Files.newBufferedReader(FileSystems.getDefault().getPath(fileName)).use { mapper.readValue(it, dto.java) }
     }
 }
 
