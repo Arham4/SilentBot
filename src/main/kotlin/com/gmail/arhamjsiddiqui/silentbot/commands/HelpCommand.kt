@@ -30,7 +30,7 @@ class HelpCommand(private val commandHandler: CommandHandler) : CommandExecutor 
             }
         }
         builder.append("\n```")
-        builder.append("Visit the Github repo to view progress as it comes: " + CONFIG.gitRepoUrl)
+        builder.append("\nVisit the Github repo to view progress as it comes: " + CONFIG.gitRepoUrl)
         return builder.toString()
     }
 
