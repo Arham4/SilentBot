@@ -21,6 +21,6 @@ class RecordCommand : CommandExecutor {
                 return "The current record for silence is ${guild.record.toTimeString().bold()}."
             }
         }
-        return "Unable to retrieve current silence record."
+        return "Unable to retrieve current silence record. If you believe this to be a problem, report the issue at: https://github.com/Arham4/SilentBot/issues/new"
     }
 }
