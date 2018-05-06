@@ -6,6 +6,7 @@ import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.queueMessage
 import com.gmail.arhamjsiddiqui.silentbot.SilentBot
 import com.gmail.arhamjsiddiqui.silentbot.data.Guild
 import com.gmail.arhamjsiddiqui.silentbot.data.Guilds
+import com.gmail.arhamjsiddiqui.silentbot.data.isBlacklistedServer
 import com.gmail.arhamjsiddiqui.silentbot.toTimeString
 import net.dv8tion.jda.core.events.Event
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
@@ -19,7 +20,7 @@ import java.util.*
  */
 class MessageReceivedListener : EventListener {
     override fun onEvent(event: Event) {
-        if (event is MessageReceivedEvent) {
+        if (event is MessageReceivedEvent && !isBlacklistedServer(event.guild.id)) {
             Guilds.useGuild(event.guild.name, event.guild.idLong) { guild ->
                 if (guild.lastMessage.time beats guild.record) {
                     guild.record = System.currentTimeMillis() - guild.lastMessage.time
