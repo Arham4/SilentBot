@@ -1,7 +1,7 @@
 package com.gmail.arhamjsiddiqui.silentbot.listeners
 
 import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.MarkdownText.bold
-import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.defaultTextChannel
+import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.getDefaultTextChannel
 import com.gmail.arhamjsiddiqui.silentbot.DiscordFunctions.queueMessage
 import com.gmail.arhamjsiddiqui.silentbot.SilentBot
 import com.gmail.arhamjsiddiqui.silentbot.data.Guild
@@ -35,7 +35,7 @@ class MessageReceivedListener : EventListener {
     }
 
     private fun sendNewRecordMessage(guild: Guild) {
-        SilentBot.BOT.defaultTextChannel?.queueMessage("A new server-wide record for silence has been made! The new record is now ${guild.record.toTimeString().bold()}!")
+        SilentBot.BOT.getDefaultTextChannel(guild.guildId)?.queueMessage("A new server-wide record for silence has been made! The new record is now ${guild.record.toTimeString().bold()}!")
     }
 
     private infix fun Long.beats(other: Long): Boolean {

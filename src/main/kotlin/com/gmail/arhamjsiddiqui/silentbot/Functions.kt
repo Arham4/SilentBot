@@ -49,8 +49,9 @@ object DiscordFunctions {
         fun String.multiLineCodeBlock(language: String) = "```$language\n$this```"
     }
 
-    val JDA.defaultTextChannel: TextChannel?
-        get() = textChannels.firstOrNull { it.canTalk() }
+    fun JDA.getDefaultTextChannel(serverId: Long): TextChannel? {
+        return getGuildById(serverId).textChannels.firstOrNull { it.canTalk() }
+    }
 }
 
 fun String.asProperSubjectType(number: Int, plural: String = "${this}s") = if (number == 1) this else plural
