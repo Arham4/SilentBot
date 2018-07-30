@@ -39,7 +39,6 @@
                         <configuration>
                             <sourceDirs>
                                 <source>src/main/kotlin</source>
-                                <source>src</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
