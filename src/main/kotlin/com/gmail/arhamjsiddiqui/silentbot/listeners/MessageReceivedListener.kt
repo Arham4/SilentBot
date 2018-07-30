@@ -22,6 +22,9 @@ class MessageReceivedListener : EventListener {
     override fun onEvent(event: Event) {
         if (event is MessageReceivedEvent && !isBlacklistedServer(event.guild.id)) {
             Guilds.useGuild(event.guild.name, event.guild.idLong) { guild ->
+                if (guild.lastMessage.time beats guild.dailyRecord) {
+                    guild.dailyRecord = System.currentTimeMillis() - guild.lastMessage.time
+                }
                 if (guild.lastMessage.time beats guild.record) {
                     guild.record = System.currentTimeMillis() - guild.lastMessage.time
                     sendNewRecordMessage(guild)
